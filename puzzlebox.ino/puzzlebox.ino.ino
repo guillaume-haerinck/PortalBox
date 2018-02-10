@@ -9,7 +9,8 @@ const int rs = 12,
           d6 = 3,
           d7 = 2;
 
-const int servoPin = 9;
+const int servoPin = 10;
+const int buzzerPin = 9;
 
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
@@ -38,13 +39,14 @@ void loop()
 {
   int potOne = map(analogRead(A0), 0, 1023, 0, 9);
   int potTwo = map(analogRead(A1), 0, 1023, 0, 9);
-  lcd.setCursor(0, 0);
-  lcd.print(lcdTop[potOne]);
-  lcd.setCursor(0, 1);
-  lcd.print(lcdBottom[potTwo]);
-
+  
   if (!isOpen)
   {
+    lcd.setCursor(0, 0);
+    lcd.print(lcdTop[potOne]);
+    lcd.setCursor(0, 1);
+    lcd.print(lcdBottom[potTwo]);
+  
     if ((potOne == 3) && (potTwo == 6))
     {
       lcd.clear();
@@ -59,9 +61,20 @@ void loop()
   
   if (isOpen)
   {
+    
+    lcd.setCursor(0, 0);
+    lcd.print("Position 0");
+    lcd.setCursor(0, 1);
+    lcd.print("Pour refermer");
+      
     if ((potOne == 0) && (potTwo == 0))
     {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Aurevoir");
       closeBox();
+      delay(3000);
+      lcd.clear();
       isOpen = false;
     }
   }
