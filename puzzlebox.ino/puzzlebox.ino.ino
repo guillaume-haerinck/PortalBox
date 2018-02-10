@@ -25,12 +25,22 @@ void setup()
 
 void loop()
 {
-  // ---- POTENTIOMETER ----
   int potOne = map(analogRead(A0), 0, 1023, 0, 9);
   int potTwo = map(analogRead(A1), 0, 1023, 0, 9);
-
-  lcd.setCursor(0, 0);
-  lcd.print(lcdTop[potOne]);
-  lcd.setCursor(0, 1);
-  lcd.print(lcdBottom[potTwo]);
+  
+  if ((potOne == 3) && (potTwo == 6))
+  {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Bravo");
+    delay(3000);
+    lcd.clear();
+  }
+  else 
+  {
+    lcd.setCursor(0, 0);
+    lcd.print(lcdTop[potOne]);
+    lcd.setCursor(0, 1);
+    lcd.print(lcdBottom[potTwo]);
+  }
 }
