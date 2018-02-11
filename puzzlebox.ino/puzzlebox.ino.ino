@@ -13,8 +13,8 @@ const int rs = 12,
           d7 = 2;
 
 const int servoPin = 10;
-const int buzzerPin = 9;
-// Potentiometer at analog 1 and 2
+const int buzzerPin = 8;
+// Potentiometer at analog 0 and 1
 
 double song[] = 
 {
