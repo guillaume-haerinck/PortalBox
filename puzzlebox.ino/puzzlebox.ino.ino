@@ -81,9 +81,9 @@ void loop()
   {
 
     lcd.setCursor(0, 0);
-    lcd.print("Position tout a gauche");
+    lcd.print("Tout a gauche");
     lcd.setCursor(0, 1);
-    lcd.print("Pour refermer le loquet");
+    lcd.print("Pour refermer");
 
     if ((potOne == 0) && (potTwo == 0))
     {
