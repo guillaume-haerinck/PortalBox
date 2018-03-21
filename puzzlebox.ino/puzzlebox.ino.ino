@@ -3,8 +3,8 @@
 #include "pitches.h"
 
 // LCD screen pins
-const int rs = 13,
-          en = 12,
+const int en = 12,
+          rs = 13,
           d4 = 4,
           d5 = 5,
           d6 = 6,
@@ -30,8 +30,9 @@ double song[] =
 
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
-const char *lcdTop[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-const char *lcdBottom[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+// Ne pas depasser 9 charactere pour le haut et 7 pour le bas
+const char *lcdTop[] = {"iNgen&r", "INGNR", "Ingenieur", "Genir", "ngenihel", "Ngnixeur", "geneHe&re", "jenr", "unJainr", "hunsgenr"};
+const char *lcdBottom[] = {"CRtF", "&ahtf", "crheTa", "Krehaty", "aatife", "CRaIa", "Creatif", "Khratiz", "crAtie", "&tif"};
 
 bool isOpen = false;
 
@@ -42,7 +43,9 @@ void setup()
   lcd.begin(16, 2);
 
   lcd.setCursor(0, 0);
-  lcd.print("Text d'intro");
+  lcd.print("Quelle est la");
+  lcd.setCursor(0, 1);
+  lcd.print("Combinaison ?");
   delay(3000);
   lcd.clear();
 }
@@ -59,11 +62,13 @@ void loop()
     lcd.setCursor(0, 1);
     lcd.print(lcdBottom[potTwo]);
 
-    if ((potOne == 3) && (potTwo == 6))
+    if ((potOne == 2) && (potTwo == 6))
     {
       lcd.clear();
       lcd.setCursor(0, 0);
-      lcd.print("Bravo");
+      lcd.print("Bravo a vous !");
+      lcd.setCursor(0, 1);
+      lcd.print("Porte ouverte");
       playSong();
       openBox();
       delay(3000);
@@ -76,15 +81,17 @@ void loop()
   {
 
     lcd.setCursor(0, 0);
-    lcd.print("Position 0");
+    lcd.print("Position tout a gauche");
     lcd.setCursor(0, 1);
-    lcd.print("Pour refermer");
+    lcd.print("Pour refermer le loquet");
 
     if ((potOne == 0) && (potTwo == 0))
     {
       lcd.clear();
       lcd.setCursor(0, 0);
-      lcd.print("Aurevoir");
+      lcd.print("Aurevoir,");
+      lcd.setCursor(0, 1);
+      lcd.print("Et a bientot");
       closeBox();
       delay(3000);
       lcd.clear();
