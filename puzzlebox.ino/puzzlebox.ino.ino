@@ -2,17 +2,15 @@
 #include <Servo.h>
 #include "pitches.h"
 
-#define REST 0
-
 // LCD screen pins
-const int rs = 12,
-          en = 11,
-          d4 = 5,
-          d5 = 4,
-          d6 = 3,
-          d7 = 2;
+const int rs = 13,
+          en = 12,
+          d4 = 4,
+          d5 = 5,
+          d6 = 6,
+          d7 = 7;
 
-const int servoPin = 10;
+const int solenoidPin = 9;
 const int buzzerPin = 8;
 // Potentiometer at analog 0 and 1
 
@@ -35,17 +33,13 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 const char *lcdTop[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 const char *lcdBottom[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
-int pos = 0;    // variable to store the servo position
-Servo servo;  // create servo object to control a servo
-
 bool isOpen = false;
 
 void setup()
 {
   Serial.begin(9600);
+  pinMode(solenoidPin, OUTPUT);
   lcd.begin(16, 2);
-  servo.attach(servoPin);  // attaches the servo on pin 9 to the servo object
-  servo.write(pos); // set the servo in position 0
 
   lcd.setCursor(0, 0);
   lcd.print("Text d'intro");
@@ -101,20 +95,12 @@ void loop()
 
 void openBox()
 {
-  for (pos = 0; pos <= 90; pos += 1)
-  { // goes from 0 degrees to 90 degrees
-    servo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
-  }
+  digitalWrite(solenoidPin, HIGH);
 }
 
 void closeBox()
 {
-  for (pos = 90; pos >= 0; pos -= 1)
-  { // goes from 90 degrees to 0 degrees
-    servo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
-  }
+  digitalWrite(solenoidPin, LOW);
 }
 
 void playSong()
