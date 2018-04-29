@@ -16,12 +16,8 @@ const int buzzerPin = 8;
 
 double song[] = 
 {
-  // Transition
-  NOTE_G3, 0.5, NOTE_A3, 0.5,
-
   // Fifth line
-  NOTE_AS3, 0.5, NOTE_AS3, 0.5, NOTE_A3, 1.0, NOTE_G3, 1.0, NOTE_F3, 0.5, NOTE_G3, 0.5,
-  NOTE_A3, 0.5, NOTE_A3, 0.5, NOTE_G3, 1.0, NOTE_F3, 1.0, NOTE_D3, 0.5, NOTE_C3, 0.5,
+  NOTE_D3, 0.5, NOTE_C3, 0.5,
   NOTE_D3, 0.5, NOTE_F3, 0.5, NOTE_F3, 0.5, NOTE_E3, 1.0, NOTE_E3, 0.5, NOTE_FS3, 0.5, NOTE_FS3, 1.5,
 
   // End of song
@@ -31,8 +27,8 @@ double song[] =
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 // Ne pas depasser 9 charactere pour le haut et 7 pour le bas
-const char *lcdTop[] = {"iNgen&r", "INGNR", "Ingenieur", "Genir", "ngenihel", "Ngnixeur", "geneHe&re", "jenr", "unJainr", "hunsgenr"};
-const char *lcdBottom[] = {"CRtF", "&ahtf", "crheTa", "Krehaty", "aatife", "CRaIa", "Creatif", "Khratiz", "crAtie", "&tif"};
+const char *lcdTop[] = {"LOCK", "INGNR", "Ingenieur", "Genir", "ngenihel", "Ngnixeur", "geneHe&re", "jenr", "unJainr", "hunsgenr"};
+const char *lcdBottom[] = {"LOCK", "&ahtf", "crheTa", "Krehaty", "aatife", "CRaIa", "Creatif", "Khratiz", "crAtie", "&tif"};
 
 bool isOpen = false;
 
@@ -40,6 +36,7 @@ void setup()
 {
   Serial.begin(9600);
   pinMode(solenoidPin, OUTPUT);
+
   lcd.begin(16, 2);
 
   lcd.setCursor(0, 0);
